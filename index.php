@@ -1,6 +1,5 @@
 <?php
-phpinfo();
-die;
+
 date_default_timezone_set('utc');
 define('APP_WD',  getcwd());
 

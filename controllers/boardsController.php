@@ -51,11 +51,16 @@ class boardsController extends controller {
         $this->renderView('write');
     }
     
+    function topicAction() {
+        $this->topic=$this->pmodel->getTopic($this->req->getVar('post_id'));
+        $this->renderView('topic');
+    }
+    
     function defaultAction() {
         $board_id=$this->req->getVar('board_id',0);
         $this->boards=$this->model->getBoardsByParent($board_id);
         
-        $this->posts=$this->pmodel->getByBoardId($board_id);
+        $this->posts=$this->pmodel->getByBoardId($board_id,true);
         $this->board_id=$board_id;
         $this->renderView('boardlist');
     }

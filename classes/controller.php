@@ -13,6 +13,7 @@ class controller {
         $this->model=  factory::getModel($this->_name);
     }
 
+    
 
     protected function renderView($name, $raw = false) {
         $title = "\n";

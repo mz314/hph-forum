@@ -11,8 +11,13 @@ class model {
         $this->db = factory::getDB()->getDB();
     }
 
-    public function get($where = "1") {
+    protected function mkGetSQL($where) {
         $sql = "select * from {$this->table_name} where $where";
+        return $sql;
+    }
+    
+    public function get($where = "1") {
+        $sql = $this->mkGetSQL($where);
         $this->db->exec($sql);
         $res = $this->db->getRows();
         return $res;

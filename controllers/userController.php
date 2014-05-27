@@ -16,8 +16,10 @@ class userController extends controller {
         $this->user = factory::getUser();
         if (!$this->user->isLogged()) {
             if ($req->isPost()) {
-                $this->user->login($req->getVar('login'),$req->getVar('password'));
-                //Błąd, bo jak się uda zalogować, to dalej będzie to samo, dopuki się nie przeładuje
+                if ($this->user->login($req->getVar('login'),$req->getVar('password'))==user::OK) {
+                  return $this->renderView('panel');  
+                }
+               
             }
 
             $this->renderView('login');
