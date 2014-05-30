@@ -17,12 +17,14 @@ class postsModel extends model {
     }
     
     
-    function getTopic($post_id) {
+    function getTopic($post_id,$single=false) {
         $where="post_id=$post_id";
         $topic=$this->get($where);
         $topic=$topic[0];
         
+        if(!$single) {
         $topic->replies=$this->getReplies($topic);
+        }
         
         return $topic;
     }
@@ -44,7 +46,11 @@ where $where";
     }
             
     function insert($data) {
+        //TODO: no logged user handling (guest)
         $sql="insert into posts ".$data->toInsert();
+//        var_dump($uid);
+//        echo $sql;
+//        die;
         $this->db->exec($sql);
     }
 

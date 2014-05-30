@@ -45,7 +45,8 @@
 </table>
 <?php if ($this->board_id != 0): ?>
     <div>
-        <a href="<?= factory::getURL()->makeGet(array('controller' => 'boards', 'action' => 'writePost')); ?>">
+        <a href="<?= factory::getURL()->makeGet(array('controller' => 'boards', 'action' => 'writePost',
+            'board_id'=>factory::getRequest()->getVar('board_id'))); ?>">
             <button>Create a topic</button>
         </a>
     </div>

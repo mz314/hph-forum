@@ -13,6 +13,9 @@ class postData {
         $this->content = $req->getVar('content');
         $usr = factory::getUser();
         $this->user_id = $usr->getID();
+        $this->reply_id=$req->getVar('reply_id');
+//        var_dump($this);
+//        die;
     }
     
     function toInsert() {
@@ -43,10 +46,16 @@ class boardsController extends controller {
     }
     
     function writePostAction() {
-      
-        
+        $this->reply_post=null;
+        if($this->req->getVar('reply_id')) {
+          $this->reply_post=$this->pmodel->getTopic($this->req->getVar('reply_id'));
+          $this->board_id=$this->reply_post->board_id;
+      } else {
+          $this->board_id=$this->req->getVar('board_id');
+      }
+        //$uid=factory::getUser()->getID();
         if ($this->req->isPost()) {
-           $this->pmodel->insert(new postData($this->req)); 
+            $this->pmodel->insert(new postData($this->req)); 
         }
         $this->renderView('write');
     }

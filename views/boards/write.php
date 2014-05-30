@@ -7,5 +7,6 @@
         </li>
     </ul>
     <input type="submit" value="Post" />
-    <input type="hidden" name="board_id" value="1" />
+    <input type="hidden" name="reply_id" value="<?= factory::getRequest()->getVar('reply_id') ?>" />
+    <input type="hidden" name="board_id" value="<?=$this->board_id ?>" />
 </form>
