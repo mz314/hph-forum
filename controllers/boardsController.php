@@ -57,7 +57,11 @@ class boardsController extends controller {
         if ($this->req->isPost()) {
             $this->pmodel->insert(new postData($this->req)); 
         }
-        $this->renderView('write');
+        $this->renderView('write',true);
+    }
+    
+    function topicListAjaxAction() {
+        echo 'test';
     }
     
     function topicAction() {
