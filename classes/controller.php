@@ -13,9 +13,18 @@ class controller {
         $this->model=  factory::getModel($this->_name);
     }
 
+    //TODO these 2
+    protected function addJS($fn,$dir='static/js') {
+        
+    }
     
-
+    
+    protected function addCSS($fn,$dir='static/css') {
+        
+    }
+    
     protected function renderView($name, $raw = false) {
+        $root=  factory::getURL()->getUrlRoot();
         $title = "\n";
         $head = "\n";
         $fn = APP_WD . '/views/' .$this->_name . '/' . $name . '.php';
