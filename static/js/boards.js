@@ -47,7 +47,15 @@ function writePost(reply_id) {
        method: 'post',
        success: function (data) {
           $('#writeContainer').html(data);
-          $('#writeContainer').dialog();
+          $('#writeContainer').dialog({
+              close: function (e,ui) {
+                   $('#writeContainer').html('');
+              },
+              modal: true,
+              minWidth: 800,
+              minHeight: 600,
+              title: 'Write a post',
+          });
        }
     }); 
 }

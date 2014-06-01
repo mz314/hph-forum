@@ -44,6 +44,9 @@ class boardsController extends controller {
     function __construct() {
         parent::__construct();
         $this->pmodel = factory::getModel('posts');
+     
+        $this->uses_js[]='boards.js';
+        
     }
 
     function writePostAjaxAction() {
