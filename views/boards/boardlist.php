@@ -20,37 +20,20 @@
         </tbody>
     </table>
 <?php endif; ?>
-<table class="topics" border="1" width="100%">
-    <thead>
-        <tr>
-            <th>Topic</th>
-            <th>Author</th>
-            <th>Date</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php foreach ($this->posts as $post): ?>
-    <tr>    
-    <td>
-    <a href="<?= factory::getURL()->makeGet(array('controller' => 'boards', 'action' => 'topic',
-        'post_id'=>$post->post_id)) ?>"> 
-        <?= $post->topic ?>
-    </a>
-    </td>
-        <td><?= (!empty($post->login) ? $post->login : '&mdash;') ?></td>
-        <td><?= ($post->datetime ? date('m-d-Y H:i:s',$post->datetime) : '&mdash;' ) ?></td>
-    </tr>
-    <?php endforeach; ?>
-</tbody>
-</table>
+<input name="board_id" type="hidden" value="<?= $this->board_id ?>" />
+<div id="topicsContaner">
+</div>
 <?php if ($this->board_id != 0): ?>
     <div>
 <!--        <a href="<?= factory::getURL()->makeGet(array('controller' => 'boards', 'action' => 'writePost',
             'board_id'=>factory::getRequest()->getVar('board_id'))); ?>">-->
-            <button onclick="writePost('<?= $this->board_id ?>')">Create a topic</button>
+            <button onclick="writePost()">Create a topic</button>
 <!--        </a>-->
     </div>
 <?php endif; ?>
+
 <div id="writeContainer">
 </div>
-
+<script>
+ loadTopicList();
+</script>

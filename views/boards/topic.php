@@ -11,9 +11,9 @@
         <span class="topic" style="display: block;"><?= $root->topic ?></span>
         <span class="topic-content"><?= $root->content->load() ?></span>
         <span class="topic-buttons">
-            <a href="?controller=boards&action=writePost&reply_id=<?= $root->post_id ?>">
-                <button name="reply">Reply</button>
-            </a>
+           
+                <button name="reply" onclick="writePost(<?= $root->post_id ?>)">Reply</button>
+           
             <!-- Admin buttons loaded via js+ajax -->
         </span>
     </li>
@@ -30,4 +30,6 @@
  }
 ?>
 <?= recursive_topics($this->topic) ?>
-
+<input name="reply_id" type="hidden" value="<?= $this->topic->post_id ?>" />
+<div id="writeContainer">
+</div>
