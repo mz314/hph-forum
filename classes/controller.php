@@ -52,7 +52,7 @@ class controller {
     
     protected function redirect($controller,$action='default') {
        $url_f=factory::getURL();
-       $url=$url_f->getRoot().$url_f->makeGet(array('controller'=>$controller,'action'=>$action));
+       $url=$url_f->getUrlRoot().$url_f->makeGet(array('controller'=>$controller,'action'=>$action));
        header("Location: ".$url.'?');
        
     }
