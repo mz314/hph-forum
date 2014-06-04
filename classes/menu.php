@@ -2,6 +2,8 @@
 class menuItem {
     protected $children=array(),$title,$href,$ordering;
     function ifShow() {
+        //set proper access right for logged in and unlogged, so logged in can't see log in item and not logged
+        // can't see log out
         return true;
     }
     
