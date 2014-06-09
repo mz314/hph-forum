@@ -5,7 +5,8 @@
         ?>
         <script src="<?= $root ?>static/js/jquery-1.10.2.js"></script>
         <script src="<?= $root ?>static/js/jquery-ui-1.10.4.js"></script>
-         <?= $head ?>
+         <title>Twoje karnisze</title>
+                <?= $head ?>
 
         <link rel="stylesheet" href="<?= $root ?>static/css/ui-lightness/jquery-ui-1.10.4.css" />
   <link rel="stylesheet" href="<?= $root ?>static/css/main.css" />
