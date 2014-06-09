@@ -42,6 +42,8 @@ class controller {
         $body_html = "\n".ob_get_clean()."\n";
         if (!$raw) {
             ob_start();
+            $menu=  factory::getMenu()->render();
+            
             require APP_WD . '/views/common/index.php';
             $layout_html = ob_get_clean();
             echo $layout_html;

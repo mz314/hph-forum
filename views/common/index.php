@@ -8,12 +8,15 @@
          <?= $head ?>
 
         <link rel="stylesheet" href="<?= $root ?>static/css/ui-lightness/jquery-ui-1.10.4.css" />
+        <link rel="stylesheet" href="<?= $root ?>static/css/main.css" />
+        <link rel="stylesheet" href="<?= $root ?>static/css/menu.css" />
+        <link rel="stylesheet" href="<?= $root ?>static/css/tables.css" />
         <title><?= $title ?></title>        
        
     </head>
     <body>
         <div id="top-menu">
-            
+            <?php require "menu.inc.php" ?>
         </div>
         <?= $body_html ?>
     </body>

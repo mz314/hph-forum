@@ -1,5 +1,5 @@
 <?php if (count($this->boards)): ?>
-    <table border="1" width="100%" class="boards">
+    <table class="list-table boardlist" width="100%" class="boards">
         <thead>
             <tr>
                 <th>Board</th><th>Description</th>

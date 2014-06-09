@@ -4,6 +4,7 @@ require_once 'request.php';
 require_once 'dbConn.php';
 require_once 'url.php';
 require_once 'user.php';
+require_once 'menu.php';
 
 class factory {
 
@@ -33,6 +34,10 @@ class factory {
         return factory::get('dbConn');
     }
 
+    static function getMenu() {
+        return factory::get('menu');
+    }
+    
     static function getModel($name) { 
         $model = null;
         $model_fn = APP_WD . '/models/' . $name . 'Model.php';
@@ -52,4 +57,9 @@ class factory {
         return factory::$models[$name];
     }
 
+}
+
+/* shortcuts */
+function url($params) {
+    return factory::getURL()->makeGet($params);
 }

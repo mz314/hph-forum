@@ -1,0 +1,38 @@
+
+
+.top-menu li {
+    list-style-type: none;
+    display: block;
+    float: left;
+    margin: 0 5px;
+}
+
+.top-menu li a {
+    display: block;
+    min-width: 100px;
+    text-align: center;
+        line-height: 299%;
+        color: cornflowerblue;
+    text-decoration: none;
+    border: 1px solid #333333;
+    height: 50px;
+    background-color: #4F4F4F;
+    -webkit-border-radius: 10px;
+-moz-border-radius: 10px;
+border-radius: 10px;
+}
+
+.top-menu li a:hover {
+    background-color: #cccccc
+}
+
+ul.top-menu {
+  
+    display: block;
+    clear: both;
+    
+    background-color: black;
+height: 70px;
+margin: 0px;
+padding-top: 10px;
+}
