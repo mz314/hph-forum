@@ -8,9 +8,10 @@
          <?= $head ?>
 
         <link rel="stylesheet" href="<?= $root ?>static/css/ui-lightness/jquery-ui-1.10.4.css" />
-        <link rel="stylesheet" href="<?= $root ?>static/css/main.css" />
+<!--        <link rel="stylesheet" href="<?= $root ?>static/css/main.css" />
         <link rel="stylesheet" href="<?= $root ?>static/css/menu.css" />
-        <link rel="stylesheet" href="<?= $root ?>static/css/tables.css" />
+        <link rel="stylesheet" href="<?= $root ?>static/css/tables.css" />-->
+        <link rel="stylesheet" href="<?= $root ?>static/css/bootstrap.css" />
         <title><?= $title ?></title>        
        
     </head>
