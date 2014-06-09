@@ -1,5 +1,7 @@
 <?php if (count($this->boards)): ?>
-    <table class="list-table boardlist" width="100%" class="boards">
+<div class="panel panel-default">   
+
+    <table class="table boardlist boards" width="100%" >
         <thead>
             <tr>
                 <th>Board</th><th>Description</th>
@@ -19,6 +21,7 @@
             <?php endforeach; ?>
         </tbody>
     </table>
+</div>
 <?php endif; ?>
 <input name="board_id" type="hidden" value="<?= $this->board_id ?>" />
 <div id="topicsContaner">
@@ -27,7 +30,7 @@
     <div>
 <!--        <a href="<?= factory::getURL()->makeGet(array('controller' => 'boards', 'action' => 'writePost',
             'board_id'=>factory::getRequest()->getVar('board_id'))); ?>">-->
-            <button onclick="writePost()">Create a topic</button>
+            <button onclick="writePost()" class="btn btn-default">Create a topic</button>
 <!--        </a>-->
     </div>
 <?php endif; ?>

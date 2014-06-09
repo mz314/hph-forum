@@ -8,10 +8,11 @@
          <?= $head ?>
 
         <link rel="stylesheet" href="<?= $root ?>static/css/ui-lightness/jquery-ui-1.10.4.css" />
-<!--        <link rel="stylesheet" href="<?= $root ?>static/css/main.css" />
-        <link rel="stylesheet" href="<?= $root ?>static/css/menu.css" />
+  <link rel="stylesheet" href="<?= $root ?>static/css/main.css" />
+   <!--           <link rel="stylesheet" href="<?= $root ?>static/css/menu.css" />
         <link rel="stylesheet" href="<?= $root ?>static/css/tables.css" />-->
         <link rel="stylesheet" href="<?= $root ?>static/css/bootstrap.css" />
+        <link rel="stylesheet" href="<?= $root ?>static/js/bootstrap.js" />
         <title><?= $title ?></title>        
        
     </head>
@@ -19,6 +20,8 @@
         <div id="top-menu">
             <?php require "menu.inc.php" ?>
         </div>
-        <?= $body_html ?>
+        <div id="body">
+            <?= $body_html ?>
+        </div>
     </body>
 </html>

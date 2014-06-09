@@ -1,4 +1,5 @@
-<table class="topics" border="1" width="100%">
+<div class="panel panel-default">  
+<table class="topics table" width="100%">
     <thead>
         <tr>
             <th>Topic</th>
@@ -21,3 +22,4 @@
     <?php endforeach; ?>
 </tbody>
 </table>
+</div>
