@@ -1,42 +1,44 @@
-<?php if (count($this->boards)): ?>
-<div class="panel panel-default">   
 
-    <table class="table boardlist boards" width="100%" >
-        <thead>
-            <tr>
-                <th>Board</th><th>Description</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($this->boards as $board): ?>     
+<?php if (count($this->boards)): ?>
+    <div class="panel panel-default">   
+
+        <table class="table boardlist boards" width="100%" >
+            <thead>
                 <tr>
-                    <td>
-                        <a href="<?=
-                                factory::getUrl()->
-                                makeGet(array('controller' => 'boards', 'board_id' => $board->board_id))
-                        ?>"><?= $board->name ?></a>
-                    </td>
-                    <td><?= $board->description ?></td>
+                    <th>Board</th><th>Description</th>
                 </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
-</div>
+            </thead>
+            <tbody>
+                <?php foreach ($this->boards as $board): ?>     
+                    <tr>
+                        <td>
+                            <a href="<?=
+                                    factory::getUrl()->
+                                    makeGet(array('controller' => 'boards', 'board_id' => $board->board_id))
+                            ?>"><?= $board->name ?></a>
+                        </td>
+                        <td><?= $board->description ?></td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
 <?php endif; ?>
 <input name="board_id" type="hidden" value="<?= $this->board_id ?>" />
 <div id="topicsContaner">
 </div>
 <?php if ($this->board_id != 0): ?>
     <div>
-<!--        <a href="<?= factory::getURL()->makeGet(array('controller' => 'boards', 'action' => 'writePost',
-            'board_id'=>factory::getRequest()->getVar('board_id'))); ?>">-->
-            <button onclick="writePost()" class="btn btn-default">Create a topic</button>
-<!--        </a>-->
+        <button type="button"  onclick="writePost()" class="btn btn-default">
+            Create a topic
+        </button>
     </div>
 <?php endif; ?>
 
-<div id="writeContainer">
-</div>
+
+<?php require "write_modal.inc.php" ?>
+
 <script>
- loadTopicList();
+            loadTopicList();
+           
 </script>

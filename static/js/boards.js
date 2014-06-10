@@ -39,23 +39,18 @@ function loadTopic(topic_id) {
 }
 
 function writePost(reply_id) {
+    
   if(typeof(reply_id)==='undefined') {
       reply_id='';
   }
     $.ajax({
-       url: url_root+"?controller=boards&action=writePost&board_id="+boardId()+"&reply_id="+replyId(),
+       url: url_root+"?controller=boards&action=writePost&board_id="+boardId()+"&reply_id="+reply_id,
        method: 'post',
        success: function (data) {
           $('#writeContainer').html(data);
-          $('#writeContainer').dialog({
-              close: function (e,ui) {
-                   $('#writeContainer').html('');
-              },
-              modal: true,
-              minWidth: 800,
-              minHeight: 600,
-              title: 'Write a post',
-          });
+          
+           $('#writeModal').modal();
+          
        }
     }); 
 }
@@ -69,9 +64,12 @@ function sendPost(reply_id) {
    $.ajax({
     url: url_root+'?controller=boards&action=writePostAjax',
     data: data,
+    
     success: function (data) {
+        $('#writeModal').modal('toggle');
+        
         if(reply_id) {
-         loadTopic(reply_id);   
+         loadTopic(replyId());   
         } else {
         loadTopicList();
         }
