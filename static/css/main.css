@@ -44,3 +44,12 @@ button.glyphicon {
 .input-group {
     margin: 5px;
 }
+
+form[name=register] .input-group-addon {
+    min-width: 135px;
+}
+
+.upload-group input {
+    padding-top: 10px;
+    padding-bottom: 40px;
+}

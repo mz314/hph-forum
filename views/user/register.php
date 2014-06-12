@@ -1,23 +1,36 @@
-<form method="POST">
-    <ul class="form-ul">
-        <li>
-            <label for="name">Login: </label><input name="login">
-        </li>
-        <li>
-            <label for="pass1">Password: </label><input name="pass1">
-        </li>
-        <li>
-            <label for="pass2">Repeat password: </label><input name="pass2">
-        </li>
-        <li>
-         <label for="screen_name">Display name: </label><input name="screen_name">
-        </li>
-        <li>
-            <label>Upload avatar</label>
-            <input type="file" name="avatar" />
-        </li>
-        <li>
-            <input type="submit" value="Register" />
-        </li>
-    </ul>
+<form method="POST" name="register" action="<?= url(array('controller' => 'user', 'action' => 'registerUser')); ?>">
+    <div class="input-group">
+        <span class="error-msg"></span>
+        <span class="input-group-addon">Login:</span>
+        <input type="text" name="login"  class="form-control" />
+    </div>
+    <div class="input-group">
+        <span class="error-msg"></span>
+        <span class="input-group-addon">Password:</span>
+        <input type="text" name="pass1"  class="form-control" />
+    </div>
+    <div class="input-group">
+        <span class="error-msg"></span>
+        <span class="input-group-addon">Repeat password:</span>
+        <input type="text" name="pass2"  class="form-control" />
+    </div> 
+    <div class="input-group">
+        <span class="error-msg"></span>
+        <span class="input-group-addon">Display name:</span>
+        <input type="text" name="screen_name"  class="form-control" />
+    </div>
+    <div class="input-group upload-group">
+        <span class="error-msg"></span>
+        <span class="input-group-addon">Upload avatar:</span>
+        <input type="file" name="avatar" class="form-control" />
+    </div>
+
+
+
+
+
+    <div align="right" style="margin-top: 10px">
+        <input class="btn btn-primary" type="submit" value="Register" />
+    </div>
+
 </form>

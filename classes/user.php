@@ -3,6 +3,10 @@ require_once "model.php";
 class user extends model {
     const NOUSER=-1,NOPASSWORD=-2,OK=0;
     
+    function addUser($data) {
+        
+    }
+    
     function getToken($un,$token) {
         $sql="select * from users where token=".$this->db->q($token)." and login=".$this->db->q($un); //and token not = ''
         $this->db->exec($sql);

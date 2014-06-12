@@ -1,5 +1,15 @@
 <?php
 
+class userData extends dataAbstract {
+     function actualInit($req) {
+         $this->login=$req->getVar('login');
+         $this->password=$req->getVar('pass1');
+         $this->screen_name=$req->getVar('screen_name');
+         $this->active=1;
+         $this->banned=0;
+     }
+}
+
 class userController extends controller {
 
     function logoutAction() {
@@ -7,6 +17,16 @@ class userController extends controller {
         $this->redirect('user');
     }
 
+    function registerAjaxValid() {
+        
+    }
+    
+    function registerUserAction() {
+         $req = factory::getRequest();
+        $ud=new userData($req);
+        var_dump($ud);
+    }
+    
     function registerAction() {
         $this->renderView('register');
     }

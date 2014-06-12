@@ -5,6 +5,7 @@ require_once 'dbConn.php';
 require_once 'url.php';
 require_once 'user.php';
 require_once 'menu.php';
+require_once 'dataAbstract.php';
 
 class factory {
 
