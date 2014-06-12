@@ -2,9 +2,20 @@
 require_once "model.php";
 class user extends model {
     const NOUSER=-1,NOPASSWORD=-2,OK=0;
+    function __construct() {
+        parent::__construct();
+        $this->table_name='users';
+    }
+            
+    function getInfoAll() {
+        return $this->get();
+    }
     
     function addUser($data) {
-        
+        $x=$data->toInsert();
+        $sql="insert into users ".$x;
+        $r=$this->db->exec($sql);
+        return $r;
     }
     
     function getToken($un,$token) {

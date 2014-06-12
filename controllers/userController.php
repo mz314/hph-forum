@@ -3,10 +3,26 @@
 class userData extends dataAbstract {
      function actualInit($req) {
          $this->login=$req->getVar('login');
-         $this->password=$req->getVar('pass1');
+         $user=  factory::getUser();
+         $this->password=$user->generatePassword($req->getVar('pass1'));
          $this->screen_name=$req->getVar('screen_name');
          $this->active=1;
          $this->banned=0;
+     }
+     
+     function validate($req) {
+         $errors=array();
+//         if($this->password!=$req->getVar('pass2')) {
+//             $errors[]='Passowrds mismatch';
+//         }
+//         if(empty($this->password)) {
+//             $errors[]='Passwords are empty';
+//         }
+         if(count($errors)==0) {
+             return false;
+         } else {
+             return $errors;
+         }
      }
 }
 
@@ -17,14 +33,33 @@ class userController extends controller {
         $this->redirect('user');
     }
 
-    function registerAjaxValid() {
+    function registerAjaxValidAction() {
+         $req = factory::getRequest();
+        $ud=new userData($req);
+        $valid=$ud->validate($req);
+        if (!$valid) {
+            $this->jsonReply(200);
+        } else {
+            $this->jsonReply(500,$valid);
+        }
         
+    }
+    
+    function registeredInfoAction() {
+         $this->renderView('registered');
     }
     
     function registerUserAction() {
          $req = factory::getRequest();
         $ud=new userData($req);
-        var_dump($ud);
+        $user=  factory::getUser();
+        if ($user->addUser($ud)) {
+         $this->redirect('user','registeredInfo');
+            
+        } else {
+         die('db error');
+            
+        };
     }
     
     function registerAction() {
@@ -57,4 +92,10 @@ class userController extends controller {
         }
     }
 
+    function listAction() {
+        $user=  factory::getUser();
+        $this->users=$user->getInfoAll();
+        
+        $this->renderView('list');
+    }
 }

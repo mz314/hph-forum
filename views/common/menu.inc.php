@@ -5,7 +5,8 @@ $login_items=array('User panel'=>url(array('controller'=>'user')));
     $login_items=array('Login'=>url(array('controller'=>'user')),
         'Register'=>url(array('controller'=>'user','action'=>'register')));
 }
-$menu=array('Forum'=>factory::getURL()->makeGet(array('controller'=>'boards')));
+$menu=array('Forum'=>factory::getURL()->makeGet(array('controller'=>'boards')),
+        'User list'=>url(array('controller'=>'user','action'=>'list')));
 #$menu=  array_merge($menu,$login_items);
 ?>
 <nav class="navbar navbar-default navbar-static-top" role="navigation">

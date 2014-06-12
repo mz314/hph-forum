@@ -32,6 +32,22 @@ function logUser() {
  });
 }
 
+function validateRegister(e) {
+ e.preventDefault();
+ var reg_data=$('form[name=register]').serialize();
+ $.ajax({
+    url: url_root+"?controller=user&action=registerAjaxValid",
+    data: reg_data,
+    success: function (data) {
+        console.log(data);
+        var data=$.parseJSON(data);
+        if (data.code==200) {
+            $('form[name=register]').submit();
+        }
+    }
+ });
+}
+
 
 $(function () {
    $('.login-button').click(loginDialog); 

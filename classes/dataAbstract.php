@@ -5,7 +5,7 @@ abstract class dataAbstract {
     abstract function actualInit($req);
 
     function validate($req) { //not abstract, since some data might not require validation
-        return true;
+        return false;
     }
     
     function __construct($req) {

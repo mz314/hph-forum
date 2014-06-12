@@ -12,10 +12,13 @@ class model {
     }
 
     protected function mkGetSQL($where) {
-        $sql = "select * from {$this->table_name} where $where";
+        $sql = "select * from {$this->table_name}";
+        if ($where != "1") {
+            "where $where";
+        }
         return $sql;
     }
-    
+
     public function get($where = "1") {
         $sql = $this->mkGetSQL($where);
         $this->db->exec($sql);
