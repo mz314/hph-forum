@@ -5,6 +5,7 @@
              <th>User name</th>
              <th>Login</th>
              <th>Email<th>
+                 <th>Group</th>
          </tr>
      </thead>
      <tbody>
@@ -14,6 +15,7 @@
              <td><?= $user->screen_name ?></td>
              <td><?= $user->login ?></td>
              <td><?= $user->email ?></td>
+             <td><?= $user->display_name ?></td>
              
          </tr>
          <?php endforeach; ?>

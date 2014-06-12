@@ -32,6 +32,10 @@ abstract class dbClass {
         return "'".$data."'";
     }
     
+    public function insertId() {
+        
+    }
+    
     public function getRow() {
         $rows=$this->getRows();
         if($rows && count($rows)) {

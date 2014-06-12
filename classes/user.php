@@ -6,7 +6,39 @@ class user extends model {
         parent::__construct();
         $this->table_name='users';
     }
-            
+     
+    protected function isSomeone($someone) {
+       $uid=$this->getID();
+        if(!$uid) {
+            return false;
+        }
+        $u=$this->get("u.user_id=$uid and g.name='$someone'");
+        if(count($u)==0) {
+            return false;
+        } else {
+            return true;
+        } 
+    }
+    
+    function isModerator() {
+        return $this->isSomeone('MODERATORS') || $this->isSomeone('SUPERADMINS');
+    }
+    
+    function isAdmin() {
+        return $this->isSomeone('SUPERADMINS');
+    }
+    
+     protected function  mkGetSQL($where='1') {
+        $sql="select * from users u
+            join user_group ug on u.user_id=ug.user_id 
+            join groups g on g.group_id=ug.group_id ";
+        if($where!='1') {
+            $sql.=" where $where";
+        }
+        
+        return $sql;
+    }
+    
     function getInfoAll() {
         return $this->get();
     }
@@ -15,6 +47,19 @@ class user extends model {
         $x=$data->toInsert();
         $sql="insert into users ".$x;
         $r=$this->db->exec($sql);
+        $this->db->exec("select useq.nextval from dual");
+        $id=$this->db->getRow();
+        
+        $id=$id->nextval-1;
+        $gidsql="select group_id from groups where name='REGULARS'";
+        $this->db->exec($gidsql);
+        $gid=$this->db->getRow();
+        $gid=$gid->group_id;
+        
+        $sql="insert into user_group (user_id,group_id) values ($id,$gid) ";
+        $this->db->exec($sql);
+        
+        
         return $r;
     }
     
@@ -33,7 +78,11 @@ class user extends model {
         $req=  factory::getRequest();
         $usr=$req->getSession('user');
         $u=$this->getToken($usr['login'], $usr['token']);
+        if($u) {
         return $u->user_id;
+        } else {
+            return false;
+        }
     }
     
     function isLogged() {

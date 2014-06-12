@@ -10,6 +10,13 @@ class oracleDB extends dbClass {
 #$this->host, ,, $this->database
     }
     
+    function insertId() {
+        $sql="select id.currval from dual";
+        $this->exec($sql);
+        $r=$this->getRow();
+        var_dump($r);
+    }
+    
     function getRows() {
         $this->rows=array(); 
         while($res=  oci_fetch_assoc($this->result)) {

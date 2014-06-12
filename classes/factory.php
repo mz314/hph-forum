@@ -31,6 +31,10 @@ class factory {
         return factory::get('url');
     }
 
+    static function getGroups() {
+        return factory::get('groups');
+    }
+    
     static function getDB() {
         return factory::get('dbConn');
     }

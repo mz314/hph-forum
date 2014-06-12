@@ -25,14 +25,18 @@
     </div>
 <?php endif; ?>
 <input name="board_id" type="hidden" value="<?= $this->board_id ?>" />
+<?php if ($this->board_id != 0): ?>
 <div id="topicsContaner">
 </div>
-<?php if ($this->board_id != 0): ?>
+<?php 
+                     
+if (factory::getUser()->isLogged()): ?>
     <div>
         <button type="button"  onclick="writePost()" class="btn btn-default">
             Create a topic
         </button>
     </div>
+<?php endif; ?>
 <?php endif; ?>
 
 

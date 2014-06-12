@@ -14,8 +14,9 @@ class model {
     protected function mkGetSQL($where) {
         $sql = "select * from {$this->table_name}";
         if ($where != "1") {
-            "where $where";
+            $sql.=" where $where";
         }
+
         return $sql;
     }
 
