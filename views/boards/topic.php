@@ -5,29 +5,32 @@
 </style>
 
 <?php
- function recursive_topics($root,$level=0) {
+ function recursive_topics($root,$level=0,$sender=null) {
      ?>
-<ul class="topic-level-<?=$level?> topic" data-level="<?= $level ?>">
+<ul class="topic-level-<?=$level?> topic list-group" data-level="<?= $level ?>">
     <?php
      ob_start();
      if($root) {
          ?>
 
-    <li>
+    <li class="list-group-item topic-item">
+        <?php if ($sender): ?>
+        <span class="re">RE: <?= $sender->topic ?></span>
+        <?php endif ?>
         <span class="topic" style="display: block;"><?= $root->topic ?></span>
-        <span class="topic-content"><?= $root->content->load() ?></span>
+        <div class="topic-content well"><?= $root->content->load() ?></div>
         <span class="topic-buttons">
            
-                <button name="reply" onclick="writePost(<?= $root->post_id ?>)">Reply</button>
+                <button class="glyphicon glyphicon-comment" name="reply" onclick="writePost(<?= $root->post_id ?>)"></button>
            
             <!-- Admin buttons loaded via js+ajax -->
         </span>
     </li>
     <?php if (count($root->replies)) { ?>
-    <li>
+    <li class="list-group-item">
         
    <?php foreach($root->replies as $r) { 
-       echo recursive_topics($r,$level+1);
+       echo recursive_topics($r,$level+1,$root);
    } 
 ?></li>
     <?php } ?>

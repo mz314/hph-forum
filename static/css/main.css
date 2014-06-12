@@ -6,3 +6,41 @@ body, html {
 div#body {
     padding: 10px;
 }
+
+button.glyphicon {
+    background: none;
+    border: 0;
+}
+
+.re {
+    font-size: 8pt;
+    color: #aaaaaa;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.topic-buttons {
+    
+}
+
+.topic-item .topic {
+    display: block;
+    font-size: 14pt;
+    font-weight: bold;
+}
+
+.topic-content {
+    display: block;
+    margin: 10px 0;
+}
+.error-msg {
+    display: none;
+}
+
+.input-group-addon {
+    min-width: 70px;
+}
+
+.input-group {
+    margin: 5px;
+}

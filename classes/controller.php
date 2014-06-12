@@ -26,6 +26,14 @@ class controller {
      
     }
     
+    protected function jsonReply($code,$data=null) {
+        $ret=new stdClass();
+        $ret->code=$code;
+        $ret->data=$data;
+        ob_clean();
+        echo json_encode($ret);
+    }
+    
     protected function renderView($name, $raw = false) {
         foreach($this->uses_js as $js) {
             $this->addJS($js);

@@ -5,6 +5,7 @@
         ?>
         <script src="<?= $root ?>static/js/jquery-1.10.2.js"></script>
         <script src="<?= $root ?>static/js/bootstrap.js"></script>
+        <script src="<?= $root ?>static/js/users.js"></script>
          <title>Twoje karnisze</title>
               
 
