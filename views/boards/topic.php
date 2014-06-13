@@ -17,6 +17,8 @@ function recursive_topics($root, $level = 0, $sender = null) {
             <li class="list-group-item topic-item">
                 <?php if ($sender): ?>
                     <span class="re">RE: <?= $sender->topic ?></span>
+                    <span><?= $root->screen_name ?> (<?= $root->login ?>) </span>
+                    <span><img src="public/avatars/<?= $root->avatar_image ?>" width="32" height="32" /></span>
                 <?php endif ?>
                 <?php if ($root->approved == 0): ?>
                     <div class="well">

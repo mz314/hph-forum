@@ -63,10 +63,33 @@ class userController extends controller {
          $this->renderView('registered');
     }
     
+    function uploadAvatar() {
+     $fn=md5(time()).$_FILES["avatar"]["name"];
+     
+     
+        move_uploaded_file($_FILES["avatar"]["tmp_name"],APP_WD .'/public/avatars/'.$fn);
+     return $fn; 
+    }
+    
+    function handleAvatar($ud) {
+        if(!empty($_FILES['avatar']['name'])) {
+            $fn=$this->uploadAvatar();
+            $ud->avatar_image=$fn;
+        }
+        return $ud;
+    }
+    
     function registerUserAction() {
-         $req = factory::getRequest();
+       
+           
+        
+        
+        $req = factory::getRequest();
         $ud=new userData($req);
+        
         $user=  factory::getUser();
+       $ud=$this->handleAvatar($ud);
+        
         if ($user->addUser($ud)) {
          $this->redirect('user','registeredInfo');
             
@@ -81,7 +104,9 @@ class userController extends controller {
         
         $ud=new userData($this->req);
         $user=  factory::getUser();
+        $ud=$this->handleAvatar($ud);
         $user->updateUser($ud);
+        
         $this->redirect("user","edit");
     }
     

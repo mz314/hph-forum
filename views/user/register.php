@@ -1,12 +1,12 @@
 <?php
 var_dump($this->usr);
-if($this->usr->user_id) {
+if(!empty($this->usr->user_id)) {
 $action=url(array('controller' => 'user', 'action' => 'saveUser'));
 } else {
     $action=url(array('controller' => 'user', 'action' => 'registerUser'));
 }
 ?>
-<form method="POST" name="register" action="<?= $action; ?>">
+<form method="POST" name="register" action="<?= $action; ?>" enctype="multipart/form-data">
     <div class="error-msg">
     </div>
     <div class="input-group">
@@ -39,7 +39,7 @@ $action=url(array('controller' => 'user', 'action' => 'saveUser'));
 
 
     <div align="right" style="margin-top: 10px">
-        <?php if($this->usr->user_id): ?>
+        <?php if(!empty($this->usr->user_id)): ?>
         
         <input class="btn btn-primary" type="submit" id="registerUser" value="{{Update}}" />
             <?php else: ?>
