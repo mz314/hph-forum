@@ -13,6 +13,20 @@ class postData extends dataAbstract {
     }
 }
 
+class boardData extends dataAbstract {
+    function actualInit($req) {
+        $this->name=$req->getVar('name');
+        $this->description=$req->getVar('description');
+        $this->parent_id=$req->getVar('board_id');
+    }
+    
+    function toUpdate() {
+        unset($this->parent_id);
+        return parent::toUpdate();
+        
+    }
+}
+
 class boardsController extends controller {
 
     function __construct() {
@@ -23,6 +37,11 @@ class boardsController extends controller {
         
     }
 
+    function deleteBoardAction() {
+       $this->model->delete($this->req->getVar('board_id')); 
+       $this->redirect('boards');
+    }
+    
     function writePostAjaxAction() {
        $this->pmodel->insert(new postData($this->req));
        echo 'test';
@@ -60,6 +79,30 @@ class boardsController extends controller {
         $this->renderView('topics',true);
     }
 
+    function editBoardAction() {
+        $bid=$this->req->getVar('board_id');
+        if($this->req->isPost()) {
+            $bd=new boardData($this->req);
+            
+            $this->model->update($bd,$bid);
+        }
+        
+        $this->board=$this->model->get("board_id=$bid");
+        $this->board=$this->board[0];
+        $this->renderView('createboard');
+    }
+    
+    function createBoardAction() {
+        if($this->req->isPost()) {
+            $bd=new boardData($this->req);
+            $this->model->insert($bd);
+            $this->redirect('boards');
+        } else {
+            $this->board=new boardData($this->req);
+        }
+        $this->renderView('createboard');
+    }
+    
     function topicAjaxAction() {
          $this->topic = $this->pmodel->getTopic($this->req->getVar('post_id'));
          $this->renderView('topic',true);

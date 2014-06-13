@@ -99,23 +99,50 @@ class userController extends controller {
         };
     }
     
-    function saveUserAction() {
+    function removeUserAction() {
+        $user=  factory::getUser();
+        $user->remove($this->req->getVar('user_id'));
+        $this->redirect('user','list');
+    }
+    
+    function saveUserAction($uid=null) {
         
         
         $ud=new userData($this->req);
         $user=  factory::getUser();
         $ud=$this->handleAvatar($ud);
-        $user->updateUser($ud);
         
+        $user->updateUser($ud,$uid);
+        if($uid) {
+            $this->redirectUrl(url(array('controller'=>'user','action'=>'adminEdit','user_id'=>$uid)));
+        } else {
         $this->redirect("user","edit");
+        }
+    }
+    
+    function adminSaveUserAction() {
+         $user=  factory::getUser();
+         $user->setGroup($this->req->getVar('user_id'),$this->req->getVar('group_id'));
+        $this->saveUserAction($this->req->getVar('user_id'));
+    }
+    
+    function adminEditAction($uid=null) {
+        if(!$uid) {
+            $uid=$this->req->getVar('user_id');
+        }
+        $user=  factory::getUser();
+        
+        $usr=$user->get('u.user_id='.$uid);
+        $this->usr=$usr[0];
+        $this->adminedit=true;
+        $this->groups=$user->getGroups();
+        $this->user=$user;
+        $this->renderView('register'); 
     }
     
     function editAction() {
-        $user=  factory::getUser();
-        
-        $usr=$user->get('u.user_id='.$user->getID());
-        $this->usr=$usr[0];
-        $this->renderView('register');
+       $user=  factory::getUser();
+        $this->adminEditAction($user->getID());
     }
     
     function registerAction() {

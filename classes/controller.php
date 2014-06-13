@@ -79,6 +79,11 @@ class controller {
         echo $output;
     }
     
+    protected function redirectUrl($url) {
+       
+        header("Location: ".$url); 
+    }
+    
     protected function redirect($controller,$action='default') {
        $url_f=factory::getURL();
        $url=$url_f->getUrlRoot().$url_f->makeGet(array('controller'=>$controller,'action'=>$action));

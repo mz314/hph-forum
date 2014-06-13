@@ -38,6 +38,32 @@ if (factory::getUser()->isLogged()): ?>
     </div>
 <?php endif; ?>
 <?php endif; ?>
+<?php if (isA()): ?>
+<div class="admin-buttons">
+    <a href="<?= url(array('controller'=>'boards','action'=>'createBoard','board_id'=>$this->board_id)) ?>">    
+    <button type="button"  class="btn btn-default">
+            {{Create new board}}
+        </button>
+    </a>
+    <a href="<?= url(array('controller'=>'boards','action'=>'editBoard','board_id'=>$this->board_id)) ?>">    
+    <button type="button"  class="btn btn-default">
+            {{Edit board}}
+        </button>
+    </a>
+    <a href="<?= url(array('controller'=>'boards','action'=>'deleteBoard','board_id'=>$this->board_id)) ?>">    
+    <button type="button"  class="btn btn-default">
+            {{Delete board}}
+        </button>
+    </a>
+<!--    <a href="<?= url(array('controller'=>'boards','action'=>'lockBoard')) ?>">    
+    <button type="button"  class="btn btn-default">
+            {{Lock board}}
+        </button>
+    </a>
+    Po wersji basic.
+    -->
+    </div>
+ <?php endif; ?>
 
 
 <?php require "write_modal.inc.php" ?>
