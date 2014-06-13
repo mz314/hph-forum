@@ -18,7 +18,9 @@ function recursive_topics($root, $level = 0, $sender = null) {
                 <?php if ($sender): ?>
                     <span class="re">RE: <?= $sender->topic ?></span>
                     <span><?= $root->screen_name ?> (<?= $root->login ?>) </span>
+                    <?php if(!empty($root->avatar_image)): ?>
                     <span><img src="public/avatars/<?= $root->avatar_image ?>" width="32" height="32" /></span>
+                    <?php endif ?>
                 <?php endif ?>
                 <?php if ($root->approved == 0): ?>
                     <div class="well">
@@ -37,13 +39,13 @@ function recursive_topics($root, $level = 0, $sender = null) {
 
                 <span class="admin-buttons">              
                     <?php if (isA()): ?>
-                        <button onclick="removePost(<?= $root->post_id ?>)">{{Remove}}</button>
+                        <button onclick="removePost(<?= $root->post_id ?>)" class="glyphicon glyphicon-remove-circle"></button>
                     <?php endif ?>
                     <?php if (isM()): ?>
                         <?php if($root->approved): ?>
-                        <button onclick="disapprovePost(<?= $root->post_id ?>,0)">{{Disapprove}}</button>
+                        <button onclick="disapprovePost(<?= $root->post_id ?>,0)" class="glyphicon glyphicon-ban-circle"></button>
                         <?php else: ?>
-                        <button onclick="disapprovePost(<?= $root->post_id ?>,1)">{{Approve}}</button>
+                        <button onclick="disapprovePost(<?= $root->post_id ?>,1)" class="glyphicon glyphicon-ok-sign"></button>
                             <?php endif ?>
         <?php endif; ?>
                 </span>

@@ -39,12 +39,12 @@ if (factory::getUser()->isLogged()): ?>
 <?php endif; ?>
 <?php endif; ?>
 <?php if (isA()): ?>
-<div class="admin-buttons">
+<div class="admin-buttons" style="margin-top: 5px;">
+    <?php if ($this->board_id != 0): ?>
     <a href="<?= url(array('controller'=>'boards','action'=>'createBoard','board_id'=>$this->board_id)) ?>">    
-    <button type="button"  class="btn btn-default">
-            {{Create new board}}
-        </button>
+    <button type="button"  class="btn btn-default">{{Create new board}}</button>
     </a>
+    <?php endif ?>
     <a href="<?= url(array('controller'=>'boards','action'=>'editBoard','board_id'=>$this->board_id)) ?>">    
     <button type="button"  class="btn btn-default">
             {{Edit board}}

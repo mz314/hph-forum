@@ -10,6 +10,7 @@ class postData extends dataAbstract {
         $this->user_id = $usr->getID();
         $this->reply_id = $req->getVar('reply_id');
         $this->approved=1;
+        #$this->date_time=time();
     }
 }
 
