@@ -14,7 +14,13 @@
      <tbody>
          <?php foreach ($this->users as $user): ?>
          <tr>
-             <td><img src="public/avatars/<?= $user->avatar_image ?>" /></td>
+             <td>
+                 <?php if (!empty($user->avatar_image)): ?>
+                 <img src="public/avatars/<?= $user->avatar_image ?>" width="64" />
+                 <?php else: ?>
+                 &nbsp;
+                 <?php endif ?>
+             </td>
              <td><?= $user->screen_name ?></td>
              <td><?= $user->login ?></td>
              <td><?= $user->email ?></td>

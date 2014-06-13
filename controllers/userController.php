@@ -68,7 +68,8 @@ class userController extends controller {
      
      
         move_uploaded_file($_FILES["avatar"]["tmp_name"],APP_WD .'/public/avatars/'.$fn);
-     return $fn; 
+     
+        return $fn; 
     }
     
     function handleAvatar($ud) {

@@ -49,7 +49,8 @@ class postsModel extends model {
     protected function mkGetSQL($where) {
         $sql = "select * from {$this->table_name} p 
 left join users u on p.user_id=u.user_id            
-where $where";
+where $where
+                order by p.datetime";
        // echo $sql;
         return $sql;
     }
@@ -57,6 +58,7 @@ where $where";
     function insert($data) {
         //TODO: no logged user handling (guest)
         $sql="insert into posts ".$data->toInsert();
+
 //        var_dump($uid);
 //        echo $sql;
 //        die;

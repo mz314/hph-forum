@@ -15,6 +15,9 @@ function recursive_topics($root, $level = 0, $sender = null) {
             ?>
 
             <li class="list-group-item topic-item">
+                <?php if(!$sender) {
+                    $sender=$root;
+                } ?>
                 <?php if ($sender): ?>
                     <span class="re">RE: <?= $sender->topic ?></span>
                     <span><?= $root->screen_name ?> (<?= $root->login ?>) </span>
