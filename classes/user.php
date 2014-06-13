@@ -7,6 +7,12 @@ class user extends model {
         $this->table_name='users';
     }
      
+    function updateUser($data) {
+        $id=$this->getID();
+        $sql="update users ".$data->toUpdate()." where user_id=$id ";
+        return $this->db->exec($sql);
+    }
+    
     protected function isSomeone($someone) {
        $uid=$this->getID();
         if(!$uid) {

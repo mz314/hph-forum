@@ -2,10 +2,10 @@
      <thead>
          <tr>
              <th>&nbsp;</th>
-             <th>User name</th>
-             <th>Login</th>
-             <th>Email<th>
-                 <th>Group</th>
+             <th>{{User name}}</th>
+             <th>{{Login}}</th>
+             <th>{{Email}}<th>
+                 <th>{{Group}}</th>
          </tr>
      </thead>
      <tbody>

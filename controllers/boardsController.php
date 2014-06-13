@@ -9,6 +9,7 @@ class postData extends dataAbstract {
         $usr = factory::getUser();
         $this->user_id = $usr->getID();
         $this->reply_id = $req->getVar('reply_id');
+        $this->approved=1;
     }
 }
 
@@ -25,6 +26,16 @@ class boardsController extends controller {
     function writePostAjaxAction() {
        $this->pmodel->insert(new postData($this->req));
        echo 'test';
+    }
+    
+    function removePostAjaxAction() {
+        $this->pmodel->removePost($this->req->getVar('post_id'));
+        //$this->jsonReply('200');
+    }
+    
+    function disapprovePostAjaxAction() {
+        $this->pmodel->disapprovePost($this->req->getVar('post_id'),$this->req->getVar('approval'));
+        $this->jsonReply('200');
     }
     
     function writePostAction() {

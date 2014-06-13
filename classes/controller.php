@@ -34,7 +34,24 @@ class controller {
         echo json_encode($ret);
     }
     
+    private function translation($output) {
+        $trans=array();
+        preg_match_all("{{(.*)}}", $output,$trans);
+        foreach($trans as $tx) {
+            foreach($tx as $t) {
+            $dt=$t;
+            $dt=  str_replace("{{", '', $dt);
+            $dt=  str_replace("}}", '', $dt);
+            $dt=t($dt);
+            $output=  str_replace($t, $dt, $output);
+            }
+        }
+        return $output;
+    }
+    
     protected function renderView($name, $raw = false) {
+       
+        $output='';
         foreach($this->uses_js as $js) {
             $this->addJS($js);
         }
@@ -54,10 +71,12 @@ class controller {
             
             require APP_WD . '/views/common/index.php';
             $layout_html = ob_get_clean();
-            echo $layout_html;
+            $output=$layout_html;
         } else {
-            echo $body_html;
+            $output=$body_html;
         }
+        $output=$this->translation($output);
+        echo $output;
     }
     
     protected function redirect($controller,$action='default') {

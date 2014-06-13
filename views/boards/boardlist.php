@@ -5,7 +5,7 @@
         <table class="table boardlist boards" width="100%" >
             <thead>
                 <tr>
-                    <th>Board</th><th>Description</th>
+                    <th>{{Board}}</th><th>{{Description}}</th>
                 </tr>
             </thead>
             <tbody>
@@ -33,7 +33,7 @@
 if (factory::getUser()->isLogged()): ?>
     <div>
         <button type="button"  onclick="writePost()" class="btn btn-default">
-            Create a topic
+            {{Create a topic}}
         </button>
     </div>
 <?php endif; ?>

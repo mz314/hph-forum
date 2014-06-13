@@ -16,6 +16,15 @@ class postsModel extends model {
         return $replies;
     }
     
+    function removePost($post_id) {
+        $sql="delete from posts cascade where post_id=$post_id";
+        $this->db->exec($sql);
+    }
+    
+    function disapprovePost($post_id,$approval) {
+        $sql="update posts set approved=$approval where post_id=$post_id";
+        $this->db->exec($sql);
+    }
     
     function getTopic($post_id,$single=false) {
         $where="post_id=$post_id";

@@ -4,10 +4,24 @@ class userData extends dataAbstract {
      function actualInit($req) {
          $this->login=$req->getVar('login');
          $user=  factory::getUser();
+         $p=$req->getVar('pass1');
+         if(!empty($p)) {
          $this->password=$user->generatePassword($req->getVar('pass1'));
+         } else {
+             $this->password='';
+         }
          $this->screen_name=$req->getVar('screen_name');
          $this->active=1;
          $this->banned=0;
+         $this->email=$req->getVar('email');
+     }
+     
+     function toUpdate() {
+         
+         if(empty($this->password)) {
+             unset($this->password);
+         }
+         return parent::toUpdate();
      }
      
      function validate($req) {
@@ -30,7 +44,7 @@ class userController extends controller {
 
     function logoutAction() {
         factory::getUser()->logout();
-        $this->redirect('user');
+        $this->redirect('boards');
     }
 
     function registerAjaxValidAction() {
@@ -62,7 +76,26 @@ class userController extends controller {
         };
     }
     
+    function saveUserAction() {
+        
+        
+        $ud=new userData($this->req);
+        $user=  factory::getUser();
+        $user->updateUser($ud);
+        $this->redirect("user","edit");
+    }
+    
+    function editAction() {
+        $user=  factory::getUser();
+        
+        $usr=$user->get('u.user_id='.$user->getID());
+        $this->usr=$usr[0];
+        $this->renderView('register');
+    }
+    
     function registerAction() {
+        $this->usr=new userData($this->req);
+        $this->usr->password='';
         $this->renderView('register');
     }
 

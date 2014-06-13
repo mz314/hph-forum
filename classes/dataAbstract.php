@@ -12,6 +12,23 @@ abstract class dataAbstract {
         $this->actualInit($req);
     }
 
+   function toUpdate() {
+      $sql=" set ";
+       $arr = (array) $this;
+      
+        $i = 0;
+        foreach ($arr as $k => $v) {
+            $sql.="$k='$v'";
+            
+            if ($i < count($arr) - 1) {
+                $sql.=',';
+            }
+            $i++;
+        }
+      
+        return $sql;  
+   }
+    
     function toInsert() {
         $arr = (array) $this;
         $cols = '';

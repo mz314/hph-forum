@@ -2,9 +2,9 @@
 <table class="topics table" width="100%">
     <thead>
         <tr>
-            <th>Topic</th>
-            <th>Author</th>
-            <th>Date</th>
+            <th>{{Topic}}</th>
+            <th>{{Author}}</th>
+            <th>{{Date}}</th>
         </tr>
     </thead>
     <tbody>

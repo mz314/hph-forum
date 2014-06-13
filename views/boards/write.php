@@ -1,9 +1,9 @@
 <form action="" method="POST" name="writePost">
     <div>
-        Topic: <input type="text" name="topic" />
+        {{Topic:}} <input type="text" name="topic" />
     </div>
     <div>
-        Contents:
+        {{Contents:}}
         <textarea name="content"></textarea>
     </div>
     <input style="display: none" name="submitbtn" type="button" value="Post" onclick="sendPost(<?= factory::getRequest()->getVar('reply_id') ?>)" />

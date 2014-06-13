@@ -1,6 +1,7 @@
 <html>
     <head>
-       <?php
+       <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <?php
         require_once 'js_init.inc.php';
         ?>
         <script src="<?= $root ?>static/js/jquery-1.10.2.js"></script>

@@ -13,16 +13,16 @@ $menu=array('Forum'=>factory::getURL()->makeGet(array('controller'=>'boards')),
 <ul class="top-menu nav navbar-nav">
 <?php foreach($menu as $t=>$h): ?>
     <li>
-     <a href="<?= $h ?>"><?= $t ?></a>
+     <a href="<?= $h ?>">{{<?= $t ?>}}</a>
     </li>
     <?php endforeach ?>
     
     <?php foreach($login_items as $t=>$h): ?>
     <li>
      <?php if($t=='Login'): ?>
-        <a href="#" class="login-button"><?= $t ?></a>
+        <a href="#" class="login-button">{{<?= $t ?>}}</a>
          <?php else: ?>
-        <a href="<?= $h ?>"><?= $t ?></a>
+        <a href="<?= $h ?>">{{<?= $t ?>}}</a>
         <?php endif; ?>
     </li>
     <?php endforeach ?>
@@ -34,18 +34,18 @@ $menu=array('Forum'=>factory::getURL()->makeGet(array('controller'=>'boards')),
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel">Login</h4>
+                <h4 class="modal-title" id="myModalLabel">{{Login}}</h4>
             </div>
             <div class="modal-body" id="loginModalContainer">
-                <div class="error-msg">test</div>
+                <div class="error-msg"></div>
                 <div  id="loginContainer">
                
             </div>
             </div>
             
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" onclick="logUser()" id="loginSubmit" class="btn btn-primary">Login</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">{{Close}}</button>
+                <button type="button" onclick="logUser()" id="loginSubmit" class="btn btn-primary">{{login}}</button>
             </div>
         </div>
     </div>

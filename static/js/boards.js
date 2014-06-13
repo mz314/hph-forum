@@ -77,3 +77,33 @@ function sendPost(reply_id) {
     }
     });
 }
+
+function disapprovePost(post_id,approval) {
+ $.ajax({
+    url: url_root+'?controller=boards&action=disapprovePostAjax&post_id='+post_id+'&approval='+approval,
+    
+    
+    success: function (data) {
+        console.log(data);
+       
+         loadTopic(replyId());   
+       
+            // console.log(data);
+    }
+    });   
+}
+
+function removePost(post_id) {
+$.ajax({
+    url: url_root+'?controller=boards&action=removePostAjax&post_id='+post_id,
+    
+    
+    success: function (data) {
+        console.log(data);
+       
+         loadTopic(replyId());   
+       
+            // console.log(data);
+    }
+    });  
+}
