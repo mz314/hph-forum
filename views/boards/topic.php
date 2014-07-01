@@ -51,10 +51,10 @@ function recursive_topics($root, $level = 0, $sender = null) {
                             <?php endif ?>
         <?php endif; ?>
                 </span>
-<!--                    <span class="aux-buttons" style="display: block; float: right;">
+                    <span class="aux-buttons" style="display: block; float: right;">
                         <button onclick="likePost(<?= $root->post_id ?>);" class="glyphicon glyphicon-thumbs-up"></button>
                         <span class="n-likes">(n-likes)</span>
-                    </span>-->
+                    </span>
             </li>
         <?php if (count($root->replies)) { ?>
                 <li class="list-group-item">

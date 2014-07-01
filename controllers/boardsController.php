@@ -53,10 +53,14 @@ class boardsController extends controller {
         //$this->jsonReply('200');
     }
     
+    
+    
     function likePostAction() {
         $uid=factory::getUser()->getID();
         $post_id=factory::getRequest()->getVar('post_id');
-        var_dump($post_id);
+        $ret=$this->pmodel->likePost($post_id,$uid);
+        var_dump($ret);
+        
     }
     
     function disapprovePostAjaxAction() {

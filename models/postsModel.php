@@ -4,8 +4,26 @@
 
 class postsModel extends model {
 
+    protected function checkLiked($post_id,$user_id) {
+        $sql="select count(*) as c from posts_likes where post_id=$post_id and user_id=$user_id";
+        $this->db->exec($sql);
+        $r=$this->db->getRows();
+        if($r[0]->c>0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+
     function likePost($post_id,$user_id) {
-        
+        $liked=$this->checkLiked($post_id, $user_id);
+        if(!$liked) {
+        $sql="insert into posts_likes (post_id,user_id) values ($post_id,$user_id)";
+        } else {
+            $sql="delete from posts_likes where post_id=$post_id and user_id=$user_id";
+        }
+        return $this->db->exec($sql);     
     }
     
     function getReplies($post) {
@@ -31,7 +49,7 @@ class postsModel extends model {
     }
     
     function getTopic($post_id,$single=false) {
-        $where="post_id=$post_id";
+        $where="p.post_id=$post_id";
         $topic=$this->get($where);
         $topic=$topic[0];
         
@@ -52,7 +70,7 @@ class postsModel extends model {
 
     protected function mkGetSQL($where) {
         $sql = "select * from {$this->table_name} p 
-left join users u on p.user_id=u.user_id            
+left join users u on p.user_id=u.user_id   
 where $where
                 order by p.datetime";
        // echo $sql;
