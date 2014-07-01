@@ -53,6 +53,12 @@ class boardsController extends controller {
         //$this->jsonReply('200');
     }
     
+    function likePostAction() {
+        $uid=factory::getUser()->getID();
+        $post_id=factory::getRequest()->getVar('post_id');
+        var_dump($post_id);
+    }
+    
     function disapprovePostAjaxAction() {
         $this->pmodel->disapprovePost($this->req->getVar('post_id'),$this->req->getVar('approval'));
         $this->jsonReply('200');
@@ -113,6 +119,8 @@ class boardsController extends controller {
        $this->topic = $this->pmodel->getTopic($this->req->getVar('post_id'));
         $this->renderView('topic_container');
     }
+    
+    
 
     function defaultAction() {
         $board_id = $this->req->getVar('board_id', 0);

@@ -35,8 +35,7 @@ function recursive_topics($root, $level = 0, $sender = null) {
                     <span class="topic-buttons">
 
                         <button class="glyphicon glyphicon-comment" name="reply" onclick="writePost(<?= $root->post_id ?>)"></button>
-
-                        <!-- Admin buttons loaded via js+ajax -->
+                        
                     </span>
         <?php endif ?>
 
@@ -52,6 +51,10 @@ function recursive_topics($root, $level = 0, $sender = null) {
                             <?php endif ?>
         <?php endif; ?>
                 </span>
+<!--                    <span class="aux-buttons" style="display: block; float: right;">
+                        <button onclick="likePost(<?= $root->post_id ?>);" class="glyphicon glyphicon-thumbs-up"></button>
+                        <span class="n-likes">(n-likes)</span>
+                    </span>-->
             </li>
         <?php if (count($root->replies)) { ?>
                 <li class="list-group-item">

@@ -4,6 +4,10 @@
 
 class postsModel extends model {
 
+    function likePost($post_id,$user_id) {
+        
+    }
+    
     function getReplies($post) {
         $where=" reply_id=$post->post_id ";
         

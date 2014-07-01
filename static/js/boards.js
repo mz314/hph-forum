@@ -107,3 +107,13 @@ $.ajax({
     }
     });  
 }
+
+function likePost(post_id) {
+    $.ajax({
+     url: url_root+'?controller=boards&action=likePost&post_id='+post_id,   
+     success: function (data) {
+         console.log(data);
+         loadTopic(replyId());
+     } 
+    });
+}

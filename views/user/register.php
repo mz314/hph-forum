@@ -18,11 +18,11 @@ else {
     </div>
     <div class="input-group">
         <span class="input-group-addon">{{Password}}:</span>
-        <input type="text" name="pass1"  class="form-control" />
+        <input type="password" name="pass1"  class="form-control" />
     </div>
     <div class="input-group">
         <span class="input-group-addon">{{Repeat password}}:</span>
-        <input type="text" name="pass2"  class="form-control" />
+        <input type="password" name="pass2"  class="form-control" />
     </div> 
     <div class="input-group">
         <span class="input-group-addon">{{Display name}}:</span>
