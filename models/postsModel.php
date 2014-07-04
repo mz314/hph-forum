@@ -4,7 +4,26 @@
 
 class postsModel extends model {
 
-    protected function checkLiked($post_id,$user_id) {
+    function getLikes($where="1=1") {
+       $sql="select * from posts_likes pl
+         left join users u on pl.user_id=u.user_id     
+where $where ";
+       $this->db->exec($sql);
+       return $this->db->getRows();
+    }
+    
+    
+    
+    function getLikesByPost($post_id) {
+//        $sql="select * from posts_likes pl
+//         left join users u on pl.user_id=u.user_id     
+//where ";
+       // echo $sql;
+       
+        return $this->getLikes("pl.post_id=$post_id");
+    }
+    
+    function checkLiked($post_id,$user_id) {
         $sql="select count(*) as c from posts_likes where post_id=$post_id and user_id=$user_id";
         $this->db->exec($sql);
         $r=$this->db->getRows();
@@ -28,11 +47,12 @@ class postsModel extends model {
     
     function getReplies($post) {
         $where=" reply_id=$post->post_id ";
-        
+        $post->likes=$this->getLikesByPost($post->post_id);
         $replies=$this->get($where);
         if(count($replies)) {
             foreach($replies as &$r) {
                 $r->replies=$this->getReplies($r);
+                
             }
         } 
         return $replies;

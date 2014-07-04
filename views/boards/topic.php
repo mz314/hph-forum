@@ -6,7 +6,7 @@
 
 <?php
 
-function recursive_topics($root, $level = 0, $sender = null) {
+function recursive_topics($root,$me, $level = 0, $sender = null) {
     ?>
     <ul class="topic-level-<?= $level ?> topic list-group" data-level="<?= $level ?>">
         <?php
@@ -52,8 +52,24 @@ function recursive_topics($root, $level = 0, $sender = null) {
         <?php endif; ?>
                 </span>
                     <span class="aux-buttons" style="display: block; float: right;">
-                        <button onclick="likePost(<?= $root->post_id ?>);" class="glyphicon glyphicon-thumbs-up"></button>
-                        <span class="n-likes">(n-likes)</span>
+                        <?php if($me->iLike($root->post_id)) {
+                            
+                            $l_icon="glyphicon-thumbs-down";
+                          
+                        } else {
+                          $l_icon="glyphicon-thumbs-up";   
+                        }
+                        ?>
+                        <button onclick="likePost(<?= $root->post_id ?>);" class="glyphicon <?= $l_icon ?>"></button>
+                        
+                        <span  class="n-likes" data-id="<?= $root->post_id ?>" 
+                              >
+                            <!-- onmouseover="likesHover(this,<?= $root->post_id ?>)" onmouseout="likesUnhover(this)" -->
+                            (<?= count($root->likes) ?>)
+<!--                        <div class="likes-container">
+                        </div>-->
+
+                       
                     </span>
             </li>
         <?php if (count($root->replies)) { ?>
@@ -61,7 +77,7 @@ function recursive_topics($root, $level = 0, $sender = null) {
 
                     <?php
                     foreach ($root->replies as $r) {
-                        echo recursive_topics($r, $level + 1, $root);
+                        echo recursive_topics($r, $me,$level + 1, $root);
                     }
                     ?></li>
         <?php } ?>
@@ -71,6 +87,6 @@ function recursive_topics($root, $level = 0, $sender = null) {
 }
 ?>
 <div class="tree">
-<?= recursive_topics($this->topic) ?>
+<?= recursive_topics($this->topic,$this) ?>
 </div>
 <input name="reply_id" type="hidden" value="<?= $this->topic->post_id ?>" />

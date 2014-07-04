@@ -12,6 +12,7 @@ class controller {
         $this->_name= str_ireplace("Controller", "", get_class($this));
         $this->req=  factory::getRequest();
         $this->model=  factory::getModel($this->_name);
+        $this->view_v=$this;
     }
 
     //TODO these 2

@@ -53,3 +53,22 @@ form[name=register] .input-group-addon {
     padding-top: 10px;
     padding-bottom: 40px;
 }
+
+.n-likes {
+    display: block;
+    float: left;
+    position: relative;
+}
+
+.likes-container {
+   background-color: #bebebe;
+  
+    height: 200px;
+    overflow: hidden;
+    position: absolute;
+    right: -34px;
+    top: 9px;
+    width: 200px;
+    z-index: 9999;
+    display: none;
+}
