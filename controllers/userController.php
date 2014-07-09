@@ -14,6 +14,10 @@ class userData extends dataAbstract {
          $this->active=1;
          $this->banned=0;
          $this->email=$req->getVar('email');
+         $gid=$req->getVar('group_id',null);
+         if($gid!==null) {
+             $this->group_id=$req->getVar('group_id');
+         }
      }
      
      function toUpdate() {
@@ -110,6 +114,7 @@ class userController extends controller {
         
         
         $ud=new userData($this->req);
+        
         $user=  factory::getUser();
         $ud=$this->handleAvatar($ud);
         
@@ -138,6 +143,7 @@ class userController extends controller {
         $this->adminedit=true;
         $this->groups=$user->getGroups();
         $this->user=$user;
+       
         $this->renderView('register'); 
     }
     
@@ -174,6 +180,9 @@ class userController extends controller {
 
             $this->renderView('login', true);
         } else {
+            $uid=$this->user->getID();
+            $usr=$this->user->get("user_id=$uid");
+            $this->usr=$usr[0];
             $this->renderView('panel');
         }
     }

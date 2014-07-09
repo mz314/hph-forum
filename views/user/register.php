@@ -38,14 +38,16 @@ else {
     </div>
 
 
-<?php if(isset($this->adminedit) && $this->adminedit): ?>
+<?php 
+
+if(isset($this->adminedit) && $this->adminedit): ?>
 <input type="hidden" name="user_id" value="<?= $this->usr->user_id ?>" />
   <div class="input-group">
         <span class="input-group-addon">{{Group}}:</span>
         <select name="group_id" class="form-control">
     <?php foreach($this->groups as $g): 
         $sel='';
-    if($g->group_id==$this->user->group_id) {
+    if($g->group_id==$this->usr->group_id) {
         $sel='selected="selected"';
     }    
     ?>

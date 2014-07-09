@@ -12,9 +12,7 @@ class user extends model {
     }
     
     function setGroup($uid,$gid) {
-        $sql="delete from user_group where user_id=$uid";
-        $this->db->exec($sql);
-        $sql="insert into user_group (user_id,group_id) values ($uid,$gid)";
+        $sql="update users set group_id=$gid where user_id=$uid";
         $this->db->exec($sql);
     }
     
@@ -44,7 +42,8 @@ class user extends model {
             $id = $this->getID();
         }
         $sql = "update users " . $data->toUpdate() . " where user_id=$id ";
-        
+//        echo $sql;
+//        die;
         return $this->db->exec($sql);
     }
 
@@ -70,13 +69,13 @@ class user extends model {
     }
 
     protected function mkGetSQL($where = '1') {
-        $sql = "select * from users u
-            join user_group ug on u.user_id=ug.user_id 
-            join groups g on g.group_id=ug.group_id ";
+        $sql = "select u.*,g.name,g.display_name from users u
+           
+            join groups g on g.group_id=u.group_id ";
         if ($where != '1') {
             $sql.=" where $where";
         }
-
+      //  echo $sql;
         return $sql;
     }
 
@@ -85,22 +84,15 @@ class user extends model {
     }
 
     function addUser($data) {
-        $x = $data->toInsert();
-        $sql = "insert into users " . $x;
-        $r = $this->db->exec($sql);
-        $this->db->exec("select useq.nextval from dual");
-        $id = $this->db->getRow();
-
-        $id = $id->nextval - 1;
         $gidsql = "select group_id from groups where name='REGULARS'";
         $this->db->exec($gidsql);
         $gid = $this->db->getRow();
         $gid = $gid->group_id;
-
-        $sql = "insert into user_group (user_id,group_id) values ($id,$gid) ";
-        $this->db->exec($sql);
-
-
+        
+        $x = $data->toInsert(array('group_id'=>$gid));
+        $sql = "insert into users " . $x;
+        $r = $this->db->exec($sql);
+     
         return $r;
     }
 

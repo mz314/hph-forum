@@ -72,3 +72,18 @@ form[name=register] .input-group-addon {
     z-index: 9999;
     display: none;
 }
+
+.userpanel-btns {
+    width: 600px; text-align: center;
+    position: absolute;
+    left:0; right:0;
+    margin-left: auto; margin-right: auto;
+}
+
+.userpanel-btns .btn {
+    width: 70px;
+}
+
+.userpanel-container {
+    width: 100%; position: relative;
+}

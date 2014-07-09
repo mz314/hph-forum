@@ -29,11 +29,12 @@ abstract class dataAbstract {
         return $sql;  
    }
     
-    function toInsert() {
+    function toInsert($additional=array()) {
         $arr = (array) $this;
         $cols = '';
         $rows = '';
         $i = 0;
+        $arr=  array_merge($arr,$additional);
         foreach ($arr as $k => $v) {
             $cols.=$k;
             $rows.="'" . $v . "'";
